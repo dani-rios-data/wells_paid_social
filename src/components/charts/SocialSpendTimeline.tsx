@@ -1,6 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { SocialSpendData } from '../BankingSocialData';
-import { bankColors, getDateRange } from '../../services/dataService';
+import { bankColors, getDateRange, formatCurrencyBKM } from '../../services/dataService';
 
 interface SocialSpendTimelineProps {
   data: SocialSpendData[];

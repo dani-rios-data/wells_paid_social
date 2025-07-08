@@ -17,11 +17,14 @@ import {
   getUniqueYears,
   getLatestDateInfo,
   getWaveTableData,
-  getUniqueBanks
+  getUniqueBanks,
+  getBankInsights
 } from "@/services/dataService";
 import { SocialSpendData } from "./BankingSocialData";
 import { generatePowerPointPresentation } from "@/services/pptxService";
 import { YoYWaveTable } from "./charts/YoYWaveTable";
+import { BankInvestmentSummary } from "./BankInvestmentSummary";
+import { MonthlyInvestmentTrends } from "./charts/MonthlyInvestmentTrends";
 
 const createSlides = (data: SocialSpendData[]) => {
   if (data.length === 0) {
@@ -95,11 +98,25 @@ const createSlides = (data: SocialSpendData[]) => {
   });
 
   // Individual bank analysis slides
-  const banks = getUniqueBanks(data);
+  const allBanks = getUniqueBanks(data);
   const currentYear = uniqueYears[uniqueYears.length - 1];
   const previousYear = uniqueYears[uniqueYears.length - 2];
 
-  banks.forEach(bank => {
+  // Calculate total spend by bank for current year
+  const bankTotals = allBanks.map(bank => {
+    const bankCurrentYearData = data.filter(item => item.bank === bank && item.year === currentYear);
+    const total = bankCurrentYearData.reduce((sum, item) => sum + item.spend, 0);
+    return { bank, total };
+  });
+
+  // Sort banks: Wells Fargo first, then by current year total spend (descending)
+  const sortedBanks = bankTotals.sort((a, b) => {
+    if (a.bank === "WELLS FARGO") return -1;
+    if (b.bank === "WELLS FARGO") return 1;
+    return b.total - a.total;
+  }).map(item => item.bank);
+
+  sortedBanks.forEach(bank => {
     // Skip "Bank" header if it exists
     if (bank === "Bank") return;
     
@@ -123,31 +140,28 @@ const createSlides = (data: SocialSpendData[]) => {
       title: `${bank} - ${currentYear} Analysis`,
       subtitle: `Social Media Investment Performance`,
       content: () => (
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 h-full">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
           <div className="xl:col-span-2">
-            <div className="space-y-6">
-              {/* Summary table placeholder */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Investment Summary - {currentYear}</h3>
-                <div className="text-sm text-gray-600">Platform breakdown and totals will be implemented</div>
-              </div>
+            <div className="space-y-4">
+              {/* Summary table with actual data */}
+              <BankInvestmentSummary 
+                data={data} 
+                bank={bank} 
+                year={currentYear} 
+              />
               
-              {/* Chart placeholder */}
-              <div className="bg-gray-50 p-4 rounded-lg h-96">
-                <h3 className="font-semibold mb-2">Monthly Investment Trends</h3>
-                <div className="text-sm text-gray-600">Clustered bar chart will be implemented</div>
-              </div>
+              {/* Monthly Investment Trends Chart */}
+              <MonthlyInvestmentTrends 
+                data={data} 
+                bank={bank} 
+                year={currentYear} 
+              />
             </div>
           </div>
           <div>
             <InsightsPanel 
               title={`${bank} Insights - ${currentYear}`}
-              insights={[
-                `Analysis for ${bank} in ${currentYear}`,
-                "Platform performance insights",
-                "Investment trend analysis",
-                "Strategic recommendations"
-              ]}
+              insights={getBankInsights(bank, currentYear)}
             />
           </div>
         </div>
@@ -160,31 +174,28 @@ const createSlides = (data: SocialSpendData[]) => {
         title: `${bank} - ${previousYear} Analysis`,
         subtitle: `Social Media Investment Performance`,
         content: () => (
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 h-full">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
             <div className="xl:col-span-2">
-              <div className="space-y-6">
-                {/* Summary table placeholder */}
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold mb-2">Investment Summary - {previousYear}</h3>
-                  <div className="text-sm text-gray-600">Platform breakdown and totals will be implemented</div>
-                </div>
+              <div className="space-y-4">
+                {/* Summary table with actual data */}
+                <BankInvestmentSummary 
+                  data={data} 
+                  bank={bank} 
+                  year={previousYear} 
+                />
                 
-                {/* Chart placeholder */}
-                <div className="bg-gray-50 p-4 rounded-lg h-96">
-                  <h3 className="font-semibold mb-2">Monthly Investment Trends</h3>
-                  <div className="text-sm text-gray-600">Clustered bar chart will be implemented</div>
-                </div>
+                {/* Monthly Investment Trends Chart */}
+                <MonthlyInvestmentTrends 
+                  data={data} 
+                  bank={bank} 
+                  year={previousYear} 
+                />
               </div>
             </div>
             <div>
               <InsightsPanel 
                 title={`${bank} Insights - ${previousYear}`}
-                insights={[
-                  `Analysis for ${bank} in ${previousYear}`,
-                  "Platform performance insights",
-                  "Investment trend analysis",
-                  "Strategic recommendations"
-                ]}
+                insights={getBankInsights(bank, previousYear)}
               />
             </div>
           </div>

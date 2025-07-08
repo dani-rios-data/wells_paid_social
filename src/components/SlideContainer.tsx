@@ -21,7 +21,7 @@ export const SlideContainer = ({ title, children, subtitle }: SlideContainerProp
           )}
         </div>
       </div>
-      <div className="px-4 py-8 max-w-screen-2xl mx-auto" data-testid="slide-content">
+      <div className="px-2 py-6 max-w-screen-2xl mx-auto" data-testid="slide-content">
         {children}
       </div>
     </div>
