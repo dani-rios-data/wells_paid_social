@@ -1,73 +1,85 @@
-# Welcome to your Lovable project
+# Wells Fargo Social Insights Dashboard
 
-## Project info
+A comprehensive banking social media investment analysis dashboard built for Wells Fargo Strategic Analytics.
 
-**URL**: https://lovable.dev/projects/0379d7a8-db88-452d-a5ac-399a5c26cc55
+## Overview
 
-## How can I edit this code?
+This dashboard provides detailed analysis of banking social media investment across multiple institutions, featuring year-over-year comparisons, platform breakdowns, and individual bank analysis.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- **Interactive Cover Page** with bank selection and date range information
+- **Timeline Analysis** with dynamic insights and trend visualization
+- **Year-over-Year Comparison** slides with multiple year pairs
+- **WAVE Table Analysis** with sorting and color-coded performance indicators
+- **Individual Bank Analysis** with dedicated slides for each institution
+- **Platform Investment Distribution** with strategic insights
+- **Responsive Design** with Wells Fargo branding
+- **CSV Data Integration** from Nielsen Ad Intel
+- **Interactive Navigation** with arrow keys
+- **PowerPoint Export** functionality
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0379d7a8-db88-452d-a5ac-399a5c26cc55) and start prompting.
+## Technology Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Charts**: Recharts
+- **Data Processing**: Custom CSV parsing
+- **Export**: PowerPoint generation
 
-**Use your preferred IDE**
+## Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Clone the repository:
+```bash
+git clone https://github.com/dani-rios-data/wells_paid_social.git
+cd wells_paid_social
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Install dependencies:
+```bash
+npm install
+```
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Usage
 
-**Use GitHub Codespaces**
+1. **Navigation**: Use arrow keys to navigate between slides
+2. **Data Source**: Update the CSV file in `/public/banking-social-data.csv` for new data
+3. **Export**: Click the download button to generate a PowerPoint presentation
+4. **Responsive**: The dashboard adapts to different screen sizes
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Data Structure
 
-## What technologies are used for this project?
+The dashboard expects CSV data with the following columns:
+- Bank
+- Year
+- Month
+- Media Category
+- Media Type
+- Distributor
+- Media Digital Consolidated
+- dollars
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This project is configured for deployment on Vercel:
 
-## How can I deploy this project?
+1. Push changes to the main branch
+2. Connect the repository to Vercel
+3. The build process will automatically run
 
-Simply open [Lovable](https://lovable.dev/projects/0379d7a8-db88-452d-a5ac-399a5c26cc55) and click on Share -> Publish.
+## Contributing
 
-## Can I connect a custom domain to my Lovable project?
+This project is maintained by Wells Fargo Strategic Analytics. For questions or contributions, please contact the team.
 
-Yes, you can!
+## License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+© 2025 Wells Fargo. All rights reserved. This software is proprietary and confidential.

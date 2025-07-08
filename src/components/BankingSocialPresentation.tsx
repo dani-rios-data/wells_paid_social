@@ -118,7 +118,43 @@ const createSlides = (data: SocialSpendData[]) => {
       )
     });
 
-    // Slide 2: Previous Year Analysis
+    // Slide 2: Current Year Analysis (más reciente primero)
+    slides.push({
+      title: `${bank} - ${currentYear} Analysis`,
+      subtitle: `Social Media Investment Performance`,
+      content: () => (
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 h-full">
+          <div className="xl:col-span-2">
+            <div className="space-y-6">
+              {/* Summary table placeholder */}
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="font-semibold mb-2">Investment Summary - {currentYear}</h3>
+                <div className="text-sm text-gray-600">Platform breakdown and totals will be implemented</div>
+              </div>
+              
+              {/* Chart placeholder */}
+              <div className="bg-gray-50 p-4 rounded-lg h-96">
+                <h3 className="font-semibold mb-2">Monthly Investment Trends</h3>
+                <div className="text-sm text-gray-600">Clustered bar chart will be implemented</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <InsightsPanel 
+              title={`${bank} Insights - ${currentYear}`}
+              insights={[
+                `Analysis for ${bank} in ${currentYear}`,
+                "Platform performance insights",
+                "Investment trend analysis",
+                "Strategic recommendations"
+              ]}
+            />
+          </div>
+        </div>
+      )
+    });
+
+    // Slide 3: Previous Year Analysis (año anterior segundo)
     if (previousYear) {
       slides.push({
         title: `${bank} - ${previousYear} Analysis`,
@@ -155,42 +191,6 @@ const createSlides = (data: SocialSpendData[]) => {
         )
       });
     }
-
-    // Slide 3: Current Year Analysis
-    slides.push({
-      title: `${bank} - ${currentYear} Analysis`,
-      subtitle: `Social Media Investment Performance`,
-      content: () => (
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 h-full">
-          <div className="xl:col-span-2">
-            <div className="space-y-6">
-              {/* Summary table placeholder */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Investment Summary - {currentYear}</h3>
-                <div className="text-sm text-gray-600">Platform breakdown and totals will be implemented</div>
-              </div>
-              
-              {/* Chart placeholder */}
-              <div className="bg-gray-50 p-4 rounded-lg h-96">
-                <h3 className="font-semibold mb-2">Monthly Investment Trends</h3>
-                <div className="text-sm text-gray-600">Clustered bar chart will be implemented</div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <InsightsPanel 
-              title={`${bank} Insights - ${currentYear}`}
-              insights={[
-                `Analysis for ${bank} in ${currentYear}`,
-                "Platform performance insights",
-                "Investment trend analysis",
-                "Strategic recommendations"
-              ]}
-            />
-          </div>
-        </div>
-      )
-    });
   });
 
   // Final slide: Platform Investment Distribution (now with dynamic insights)
