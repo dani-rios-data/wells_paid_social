@@ -1,6 +1,11 @@
+import React, { useState, useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { SocialSpendData } from '../BankingSocialData';
 import { bankColors, getDateRange, formatCurrencyBKM } from '../../services/dataService';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
 
 interface SocialSpendTimelineProps {
   data: SocialSpendData[];
@@ -29,6 +34,45 @@ interface TooltipProps {
 }
 
 export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
+  // State for selected banks filter
+  const [selectedBanks, setSelectedBanks] = useState<string[]>([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  
+  // Get ALL unique banks from the data
+  const allBanks = useMemo(() => [...new Set(data.map(item => item.bank))].sort(), [data]);
+  
+  // Initialize with all banks selected
+  React.useEffect(() => {
+    if (selectedBanks.length === 0) {
+      setSelectedBanks(allBanks);
+    }
+  }, [allBanks, selectedBanks.length]);
+  
+  // Filter data based on selected banks
+  const filteredData = useMemo(() => {
+    if (selectedBanks.length === 0) return data;
+    return data.filter(item => selectedBanks.includes(item.bank));
+  }, [data, selectedBanks]);
+  
+  // Handle bank selection
+  const handleBankToggle = (bank: string) => {
+    setSelectedBanks(prev => {
+      if (prev.includes(bank)) {
+        return prev.filter(b => b !== bank);
+      } else {
+        return [...prev, bank];
+      }
+    });
+  };
+  
+  // Handle select all/none
+  const handleSelectAll = () => {
+    setSelectedBanks(allBanks);
+  };
+  
+  const handleSelectNone = () => {
+    setSelectedBanks([]);
+  };
   // Helper function to parse month year string to date
   const parseMonthYear = (monthYear: string, year: number) => {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -46,7 +90,7 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
   };
 
   // Aggregate data by bank and month-year combination
-  const aggregatedData = data.reduce((acc, curr) => {
+  const aggregatedData = filteredData.reduce((acc, curr) => {
     const date = parseMonthYear(curr.month, curr.year);
     const sortKey = date.getTime();
     // Format as MMM YYYY (e.g., "Mar 2023")
@@ -79,8 +123,35 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
       return rest as ChartDataItem;
     });
 
-  // Get ALL unique banks from the data (no filtering)
-  const banksInData = [...new Set(data.map(item => item.bank))].sort();
+  // Get filtered banks from the data
+  const banksInData = [...new Set(filteredData.map(item => item.bank))].sort();
+  
+  // Calculate Y-axis domain based on filtered data
+  const yAxisDomain = useMemo(() => {
+    if (chartData.length === 0) return [0, 1000];
+    
+    const allValues: number[] = [];
+    chartData.forEach(item => {
+      banksInData.forEach(bank => {
+        const value = item[bank];
+        if (typeof value === 'number' && value > 0) {
+          allValues.push(value);
+        }
+      });
+    });
+    
+    if (allValues.length === 0) return [0, 1000];
+    
+    const minValue = Math.min(...allValues);
+    const maxValue = Math.max(...allValues);
+    
+    // Add 5% padding
+    const padding = (maxValue - minValue) * 0.05;
+    const yMin = Math.max(0, minValue - padding);
+    const yMax = maxValue + padding;
+    
+    return [yMin, yMax];
+  }, [chartData, banksInData]);
 
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
@@ -111,7 +182,7 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
     }
   };
 
-  const dateRange = getDateRange(data);
+  const dateRange = getDateRange(filteredData);
 
   // Custom tooltip formatter that sorts values from highest to lowest
   const customTooltipFormatter = (value: number, name: string) => [formatCurrencyTooltip(value), name];
@@ -145,9 +216,79 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
 
   return (
     <div className="bg-white p-3 rounded-lg shadow-sm border w-full" data-testid="social-spend-timeline">
-      <h3 className="text-base font-semibold mb-3 text-foreground">
-        Total Social Spend Follows Category Trend of Higher Spend
-      </h3>
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-base font-semibold text-foreground">
+          Total Social Spend Follows Category Trend of Higher Spend
+        </h3>
+        
+        {/* Multi-select Bank Filter */}
+        <div className="relative">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="flex items-center gap-2 text-sm"
+          >
+            Banks ({selectedBanks.length})
+            <ChevronDown className="w-4 h-4" />
+          </Button>
+          
+          {isFilterOpen && (
+            <div className="absolute right-0 top-full mt-1 w-64 bg-white border rounded-lg shadow-lg z-10 p-3">
+              <div className="flex gap-2 mb-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSelectAll}
+                  className="text-xs"
+                >
+                  Select All
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSelectNone}
+                  className="text-xs"
+                >
+                  Select None
+                </Button>
+              </div>
+              
+              <div className="max-h-48 overflow-y-auto space-y-2">
+                {allBanks.map(bank => (
+                  <div key={bank} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={bank}
+                      checked={selectedBanks.includes(bank)}
+                      onCheckedChange={() => handleBankToggle(bank)}
+                    />
+                    <label
+                      htmlFor={bank}
+                      className="text-sm cursor-pointer flex-1"
+                    >
+                      {bank}
+                    </label>
+                    <div
+                      className="w-3 h-3 rounded"
+                      style={{ backgroundColor: bankColors[bank as keyof typeof bankColors] || '#6B7280' }}
+                    />
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-2 pt-2 border-t">
+                <Button
+                  size="sm"
+                  onClick={() => setIsFilterOpen(false)}
+                  className="w-full text-xs"
+                >
+                  Done
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       
       <div style={{ width: '100%', height: 520 }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -169,6 +310,7 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
               tickFormatter={formatCurrency}
               stroke="#9CA3AF"
               width={25}
+              domain={yAxisDomain}
             />
             <Tooltip 
               content={customTooltip}

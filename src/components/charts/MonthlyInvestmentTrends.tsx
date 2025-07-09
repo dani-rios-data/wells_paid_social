@@ -135,29 +135,15 @@ export const MonthlyInvestmentTrends: React.FC<MonthlyInvestmentTrendsProps> = (
   const actualMin = 0; // Always start from 0 for spending data
   const actualMax = nonZeroValues.length > 0 ? Math.max(...nonZeroValues) : 0;
   
-  // Calculate appropriate tick interval and domain with consistent padding
+  // Calculate appropriate tick interval and domain with tighter padding
   const calculateYAxisDomain = (min: number, max: number) => {
-    if (max <= 0) return { domain: [0, 1000], ticks: [0, 200, 400, 600, 800, 1000] };
+    if (max <= 0) return { domain: [0, 1000] };
     
-    // Add consistent 10% padding above max
-    const paddingPercent = 0.10;
+    // Add minimal padding above max (5% instead of 10%)
+    const paddingPercent = 0.05;
     const paddedMax = max * (1 + paddingPercent);
     
-    // Simple rounding to avoid inconsistencies
-    const magnitude = Math.pow(10, Math.floor(Math.log10(paddedMax)));
-    const normalizedMax = paddedMax / magnitude;
-    
-    // More consistent rounding - round up to next 0.5 interval
-    const roundedMax = Math.ceil(normalizedMax * 2) / 2;
-    
-    const yMax = roundedMax * magnitude;
-    const yMin = 0;
-    
-    // Create 5 equal intervals
-    const tickInterval = yMax / 5;
-    const ticks = Array.from({ length: 6 }, (_, i) => i * tickInterval);
-    
-    return { domain: [yMin, yMax], ticks };
+    return { domain: [0, paddedMax] };
   };
   
   const yAxisConfig = calculateYAxisDomain(actualMin, actualMax);
@@ -225,7 +211,6 @@ export const MonthlyInvestmentTrends: React.FC<MonthlyInvestmentTrendsProps> = (
               tickLine={false}
               tickFormatter={(value) => formatCurrencyBKM(value)}
               domain={yAxisConfig.domain}
-              ticks={yAxisConfig.ticks}
             />
             <Tooltip content={<CustomTooltip />} />
             <Bar 

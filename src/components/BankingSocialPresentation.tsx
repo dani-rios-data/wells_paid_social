@@ -21,10 +21,10 @@ import {
   getBankInsights
 } from "@/services/dataService";
 import { SocialSpendData } from "./BankingSocialData";
-import { generatePowerPointPresentation } from "@/services/pptxService";
 import { YoYWaveTable } from "./charts/YoYWaveTable";
 import { BankInvestmentSummary } from "./BankInvestmentSummary";
 import { MonthlyInvestmentTrends } from "./charts/MonthlyInvestmentTrends";
+import { WellsFargoDashboard } from "./charts/WellsFargoDashboard";
 
 const createSlides = (data: SocialSpendData[]) => {
   if (data.length === 0) {
@@ -45,11 +45,11 @@ const createSlides = (data: SocialSpendData[]) => {
       title: "Total Social Spend Follows Category Trend of Higher Spend",
       subtitle: dateRange,
       content: () => (
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        <div className="xl:col-span-2">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        <div className="xl:col-span-3">
           <SocialSpendTimeline data={data} />
         </div>
-        <div>
+        <div className="xl:col-span-1">
           <InsightsPanel 
             title="Key Investment Patterns"
             insights={generateTimelineInsights(data)}
@@ -95,6 +95,13 @@ const createSlides = (data: SocialSpendData[]) => {
         </div>
       )
     });
+  });
+
+  // Platform Investment Distribution Dashboard Slide
+  slides.push({
+    title: "Platform Investment Distribution",
+    subtitle: "Social Media Investment Analysis Across Banking Industry",
+    content: () => <WellsFargoDashboard data={data} />
   });
 
   // Individual bank analysis slides
@@ -285,28 +292,6 @@ export const BankingSocialPresentation = () => {
     setShowCover(false);
   };
 
-  const handleDownload = async () => {
-    try {
-      toast({
-        title: "Download Started",
-        description: "Your PowerPoint presentation is being generated...",
-      });
-      
-      await generatePowerPointPresentation(data, slides);
-      
-      toast({
-        title: "Download Complete",
-        description: "Your PowerPoint presentation has been downloaded successfully.",
-      });
-    } catch (error) {
-      console.error('Download failed:', error);
-      toast({
-        title: "Download Failed",
-        description: "There was an error generating your presentation. Please try again.",
-        variant: "destructive"
-      });
-    }
-  };
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -350,7 +335,6 @@ export const BankingSocialPresentation = () => {
         <PresentationHeader 
           currentSlide={currentSlide}
           totalSlides={slides.length}
-          onDownload={handleDownload}
           onShare={handleShare}
         />
         
