@@ -67,7 +67,7 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
   
   // Handle select all/none
   const handleSelectAll = () => {
-    setSelectedBanks(allBanks);
+    setSelectedBanks([...allBanks]);
   };
   
   const handleSelectNone = () => {
@@ -234,12 +234,19 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
           </Button>
           
           {isFilterOpen && (
-            <div className="absolute right-0 top-full mt-1 w-64 bg-white border rounded-lg shadow-lg z-10 p-3">
+            <div 
+              className="absolute right-0 top-full mt-1 w-64 bg-white border rounded-lg shadow-lg z-10 p-3"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex gap-2 mb-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={handleSelectAll}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleSelectAll();
+                  }}
                   className="text-xs"
                 >
                   Select All
@@ -247,7 +254,11 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={handleSelectNone}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleSelectNone();
+                  }}
                   className="text-xs"
                 >
                   Select None
@@ -279,7 +290,11 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
               <div className="mt-2 pt-2 border-t">
                 <Button
                   size="sm"
-                  onClick={() => setIsFilterOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsFilterOpen(false);
+                  }}
                   className="w-full text-xs"
                 >
                   Done
