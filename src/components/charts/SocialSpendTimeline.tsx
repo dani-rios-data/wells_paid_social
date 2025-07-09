@@ -43,8 +43,8 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
   
   // Initialize with all banks selected
   React.useEffect(() => {
-    if (selectedBanks.length === 0) {
-      setSelectedBanks(allBanks);
+    if (selectedBanks.length === 0 && allBanks.length > 0) {
+      setSelectedBanks([...allBanks]);
     }
   }, [allBanks, selectedBanks.length]);
   
@@ -65,14 +65,6 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
     });
   };
   
-  // Handle select all/none
-  const handleSelectAll = () => {
-    setSelectedBanks([...allBanks]);
-  };
-  
-  const handleSelectNone = () => {
-    setSelectedBanks([]);
-  };
   // Helper function to parse month year string to date
   const parseMonthYear = (monthYear: string, year: number) => {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -238,33 +230,6 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
               className="absolute right-0 top-full mt-1 w-64 bg-white border rounded-lg shadow-lg z-10 p-3"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex gap-2 mb-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleSelectAll();
-                  }}
-                  className="text-xs"
-                >
-                  Select All
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleSelectNone();
-                  }}
-                  className="text-xs"
-                >
-                  Select None
-                </Button>
-              </div>
-              
               <div className="max-h-48 overflow-y-auto space-y-2">
                 {allBanks.map(bank => (
                   <div key={bank} className="flex items-center space-x-2">
@@ -285,20 +250,6 @@ export const SocialSpendTimeline = ({ data }: SocialSpendTimelineProps) => {
                     />
                   </div>
                 ))}
-              </div>
-              
-              <div className="mt-2 pt-2 border-t">
-                <Button
-                  size="sm"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsFilterOpen(false);
-                  }}
-                  className="w-full text-xs"
-                >
-                  Done
-                </Button>
               </div>
             </div>
           )}

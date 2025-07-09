@@ -25,6 +25,7 @@ import { YoYWaveTable } from "./charts/YoYWaveTable";
 import { BankInvestmentSummary } from "./BankInvestmentSummary";
 import { MonthlyInvestmentTrends } from "./charts/MonthlyInvestmentTrends";
 import { WellsFargoDashboard } from "./charts/WellsFargoDashboard";
+import { AnnualTotalsSlide } from "./charts/AnnualTotalsSlide";
 
 const createSlides = (data: SocialSpendData[]) => {
   if (data.length === 0) {
@@ -57,16 +58,15 @@ const createSlides = (data: SocialSpendData[]) => {
         </div>
       </div>
     )
+  },
+  // Slide 2: Annual Totals and Month-over-Month tables
+  {
+    title: "Annual Social Spend Summary",
+    subtitle: "Total spend by year and month-over-month breakdown",
+    content: () => <AnnualTotalsSlide data={data} />
   }];
 
-  // New slide: WAVE Table
-  if (waveTableData) {
-    slides.push({
-      title: `WAVE Social Spend Table (${waveTableData.yearA + 1})`,
-      subtitle: `Comparison: December ${waveTableData.yearA} + available months ${waveTableData.yearB}`,
-      content: () => <YoYWaveTable waveData={waveTableData} />
-    });
-  }
+  // WAVE Table slide removed per user request
 
   // Generate YoY slides dynamically for each consecutive year pair
   yearPairs.forEach(pair => {
@@ -107,9 +107,8 @@ const createSlides = (data: SocialSpendData[]) => {
   // Individual bank analysis slides
   const allBanks = getUniqueBanks(data);
   const currentYear = uniqueYears[uniqueYears.length - 1];
-  const previousYear = uniqueYears[uniqueYears.length - 2];
 
-  // Calculate total spend by bank for current year
+  // Calculate total spend by bank for current year to determine bank order
   const bankTotals = allBanks.map(bank => {
     const bankCurrentYearData = data.filter(item => item.bank === bank && item.year === currentYear);
     const total = bankCurrentYearData.reduce((sum, item) => sum + item.spend, 0);
@@ -142,73 +141,47 @@ const createSlides = (data: SocialSpendData[]) => {
       )
     });
 
-    // Slide 2: Current Year Analysis (más reciente primero)
-    slides.push({
-      title: `${bank} - ${currentYear} Analysis`,
-      subtitle: `Social Media Investment Performance`,
-      content: () => (
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
-          <div className="xl:col-span-2">
-            <div className="space-y-4">
-              {/* Summary table with actual data */}
-              <BankInvestmentSummary 
-                data={data} 
-                bank={bank} 
-                year={currentYear} 
-              />
-              
-              {/* Monthly Investment Trends Chart */}
-              <MonthlyInvestmentTrends 
-                data={data} 
-                bank={bank} 
-                year={currentYear} 
-              />
-            </div>
-          </div>
-          <div>
-            <InsightsPanel 
-              title={`${bank} Insights - ${currentYear}`}
-              insights={getBankInsights(bank, currentYear)}
-            />
-          </div>
-        </div>
-      )
-    });
-
-    // Slide 3: Previous Year Analysis (año anterior segundo)
-    if (previousYear) {
-      slides.push({
-        title: `${bank} - ${previousYear} Analysis`,
-        subtitle: `Social Media Investment Performance`,
-        content: () => (
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
-            <div className="xl:col-span-2">
-              <div className="space-y-4">
-                {/* Summary table with actual data */}
-                <BankInvestmentSummary 
-                  data={data} 
-                  bank={bank} 
-                  year={previousYear} 
-                />
-                
-                {/* Monthly Investment Trends Chart */}
-                <MonthlyInvestmentTrends 
-                  data={data} 
-                  bank={bank} 
-                  year={previousYear} 
+    // Create slides for each year (most recent first)
+    const yearsReversed = [...uniqueYears].reverse(); // From most recent to oldest
+    
+    yearsReversed.forEach(year => {
+      // Check if this bank has data for this year
+      const bankYearData = data.filter(item => item.bank === bank && item.year === year);
+      
+      if (bankYearData.length > 0) {
+        slides.push({
+          title: `${bank} - ${year} Analysis`,
+          subtitle: `Social Media Investment Performance`,
+          content: () => (
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
+              <div className="xl:col-span-2">
+                <div className="space-y-4">
+                  {/* Summary table with actual data */}
+                  <BankInvestmentSummary 
+                    data={data} 
+                    bank={bank} 
+                    year={year} 
+                  />
+                  
+                  {/* Monthly Investment Trends Chart */}
+                  <MonthlyInvestmentTrends 
+                    data={data} 
+                    bank={bank} 
+                    year={year} 
+                  />
+                </div>
+              </div>
+              <div>
+                <InsightsPanel 
+                  title={`${bank} Insights - ${year}`}
+                  insights={getBankInsights(bank, year)}
                 />
               </div>
             </div>
-            <div>
-              <InsightsPanel 
-                title={`${bank} Insights - ${previousYear}`}
-                insights={getBankInsights(bank, previousYear)}
-              />
-            </div>
-          </div>
-        )
-      });
-    }
+          )
+        });
+      }
+    });
   });
 
   // Final slide: Platform Investment Distribution (now with dynamic insights)

@@ -74,11 +74,11 @@ BANK OF AMERICA,2025,February 2025,Digital,Digital Social,FACEBOOK.COM,Social,15
 BANK OF AMERICA,2025,February 2025,Digital,Digital Social,PINTEREST.COM,Social,364
 BANK OF AMERICA,2025,February 2025,Digital,Digital Social,REDDIT,Social,8396
 BANK OF AMERICA,2025,January 2025,Digital,Digital Social,REDDIT,Social,2302
-BANK OF AMERICA,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,74613
-BANK OF AMERICA,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,43289
-BANK OF AMERICA,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,21740
-BANK OF AMERICA,2025,July 2025,Digital,Digital Social,REDDIT,Social,2505
-BANK OF AMERICA,2025,July 2025,Digital,Digital Social,X.COM,Social,2050
+BANK OF AMERICA,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,80101
+BANK OF AMERICA,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,51622
+BANK OF AMERICA,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,26048
+BANK OF AMERICA,2025,July 2025,Digital,Digital Social,REDDIT,Social,3082
+BANK OF AMERICA,2025,July 2025,Digital,Digital Social,X.COM,Social,2233
 BANK OF AMERICA,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,170319
 BANK OF AMERICA,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,136413
 BANK OF AMERICA,2025,June 2025,Digital,Digital Social,PINTEREST.COM,Social,87270
@@ -226,10 +226,10 @@ CAPITAL ONE,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,125184
 CAPITAL ONE,2025,January 2025,Digital,Digital Social,PINTEREST.COM,Social,193891
 CAPITAL ONE,2025,January 2025,Digital,Digital Social,REDDIT,Social,85222
 CAPITAL ONE,2025,January 2025,Digital,Digital Social,TIKTOK,Social,546776
-CAPITAL ONE,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,329069
-CAPITAL ONE,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,44407
-CAPITAL ONE,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,272162
-CAPITAL ONE,2025,July 2025,Digital,Digital Social,REDDIT,Social,15568
+CAPITAL ONE,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,403964
+CAPITAL ONE,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,54470
+CAPITAL ONE,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,318082
+CAPITAL ONE,2025,July 2025,Digital,Digital Social,REDDIT,Social,21681
 CAPITAL ONE,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,1739048
 CAPITAL ONE,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,269316
 CAPITAL ONE,2025,June 2025,Digital,Digital Social,PINTEREST.COM,Social,1110596
@@ -264,7 +264,7 @@ CASH APP,2024,September 2024,Digital,Digital Social,FACEBOOK.COM,Social,95348
 CASH APP,2025,April 2025,Digital,Digital Social,FACEBOOK.COM,Social,36968
 CASH APP,2025,April 2025,Digital,Digital Social,INSTAGRAM.COM,Social,124
 CASH APP,2025,April 2025,Digital,Digital Social,REDDIT,Social,167
-CASH APP,2025,July 2025,Digital,Digital Social,TIKTOK,Social,6655
+CASH APP,2025,July 2025,Digital,Digital Social,TIKTOK,Social,7121
 CASH APP,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,132
 CASH APP,2025,June 2025,Digital,Digital Social,TIKTOK,Social,582986
 CASH APP,2025,March 2025,Digital,Digital Social,FACEBOOK.COM,Social,794
@@ -343,9 +343,9 @@ CHASE,2025,February 2025,Digital,Digital Social,PINTEREST.COM,Social,739764
 CHASE,2025,January 2025,Digital,Digital Social,FACEBOOK.COM,Social,1460837
 CHASE,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,242942
 CHASE,2025,January 2025,Digital,Digital Social,PINTEREST.COM,Social,549558
-CHASE,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,264648
-CHASE,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,113200
-CHASE,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,256168
+CHASE,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,326673
+CHASE,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,135758
+CHASE,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,318098
 CHASE,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,1553240
 CHASE,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,599416
 CHASE,2025,June 2025,Digital,Digital Social,PINTEREST.COM,Social,1393018
@@ -532,9 +532,9 @@ PNC BANK,2025,February 2025,Digital,Digital Social,PINTEREST.COM,Social,8035
 PNC BANK,2025,January 2025,Digital,Digital Social,FACEBOOK.COM,Social,119104
 PNC BANK,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,34302
 PNC BANK,2025,January 2025,Digital,Digital Social,PINTEREST.COM,Social,1531
-PNC BANK,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,25822
-PNC BANK,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,27651
-PNC BANK,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,1236
+PNC BANK,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,29657
+PNC BANK,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,33937
+PNC BANK,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,1808
 PNC BANK,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,123874
 PNC BANK,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,176549
 PNC BANK,2025,June 2025,Digital,Digital Social,PINTEREST.COM,Social,10378
@@ -544,6 +544,129 @@ PNC BANK,2025,March 2025,Digital,Digital Social,PINTEREST.COM,Social,12460
 PNC BANK,2025,May 2025,Digital,Digital Social,FACEBOOK.COM,Social,161182
 PNC BANK,2025,May 2025,Digital,Digital Social,INSTAGRAM.COM,Social,114240
 PNC BANK,2025,May 2025,Digital,Digital Social,PINTEREST.COM,Social,6533
+SOFI,2023,April 2023,Digital,Digital Social,FACEBOOK.COM,Social,779560
+SOFI,2023,April 2023,Digital,Digital Social,INSTAGRAM.COM,Social,189579
+SOFI,2023,April 2023,Digital,Digital Social,TIKTOK,Social,7059
+SOFI,2023,April 2023,Digital,Digital Social,X.COM,Social,20629
+SOFI,2023,August 2023,Digital,Digital Social,FACEBOOK.COM,Social,774874
+SOFI,2023,August 2023,Digital,Digital Social,INSTAGRAM.COM,Social,221309
+SOFI,2023,August 2023,Digital,Digital Social,TIKTOK,Social,5515
+SOFI,2023,August 2023,Digital,Digital Social,X.COM,Social,11120
+SOFI,2023,December 2023,Digital,Digital Social,FACEBOOK.COM,Social,562479
+SOFI,2023,December 2023,Digital,Digital Social,INSTAGRAM.COM,Social,218091
+SOFI,2023,December 2023,Digital,Digital Social,TIKTOK,Social,50010
+SOFI,2023,February 2023,Digital,Digital Social,FACEBOOK.COM,Social,662817
+SOFI,2023,February 2023,Digital,Digital Social,INSTAGRAM.COM,Social,153509
+SOFI,2023,February 2023,Digital,Digital Social,TIKTOK,Social,7735
+SOFI,2023,January 2023,Digital,Digital Social,FACEBOOK.COM,Social,719942
+SOFI,2023,January 2023,Digital,Digital Social,INSTAGRAM.COM,Social,165119
+SOFI,2023,January 2023,Digital,Digital Social,TIKTOK,Social,6044
+SOFI,2023,January 2023,Digital,Digital Social,X.COM,Social,19666
+SOFI,2023,July 2023,Digital,Digital Social,FACEBOOK.COM,Social,802078
+SOFI,2023,July 2023,Digital,Digital Social,INSTAGRAM.COM,Social,255811
+SOFI,2023,July 2023,Digital,Digital Social,TIKTOK,Social,459
+SOFI,2023,July 2023,Digital,Digital Social,X.COM,Social,1520
+SOFI,2023,June 2023,Digital,Digital Social,FACEBOOK.COM,Social,1197497
+SOFI,2023,June 2023,Digital,Digital Social,INSTAGRAM.COM,Social,329614
+SOFI,2023,June 2023,Digital,Digital Social,TIKTOK,Social,6938
+SOFI,2023,June 2023,Digital,Digital Social,X.COM,Social,36542
+SOFI,2023,March 2023,Digital,Digital Social,FACEBOOK.COM,Social,536602
+SOFI,2023,March 2023,Digital,Digital Social,INSTAGRAM.COM,Social,112912
+SOFI,2023,March 2023,Digital,Digital Social,TIKTOK,Social,8003
+SOFI,2023,March 2023,Digital,Digital Social,X.COM,Social,67947
+SOFI,2023,May 2023,Digital,Digital Social,FACEBOOK.COM,Social,1336694
+SOFI,2023,May 2023,Digital,Digital Social,INSTAGRAM.COM,Social,333141
+SOFI,2023,May 2023,Digital,Digital Social,TIKTOK,Social,7744
+SOFI,2023,May 2023,Digital,Digital Social,X.COM,Social,203832
+SOFI,2023,November 2023,Digital,Digital Social,FACEBOOK.COM,Social,593605
+SOFI,2023,November 2023,Digital,Digital Social,INSTAGRAM.COM,Social,222481
+SOFI,2023,November 2023,Digital,Digital Social,TIKTOK,Social,45172
+SOFI,2023,November 2023,Digital,Digital Social,X.COM,Social,1648
+SOFI,2023,October 2023,Digital,Digital Social,FACEBOOK.COM,Social,932467
+SOFI,2023,October 2023,Digital,Digital Social,INSTAGRAM.COM,Social,407986
+SOFI,2023,October 2023,Digital,Digital Social,TIKTOK,Social,7628
+SOFI,2023,October 2023,Digital,Digital Social,X.COM,Social,12585
+SOFI,2023,September 2023,Digital,Digital Social,FACEBOOK.COM,Social,1031710
+SOFI,2023,September 2023,Digital,Digital Social,INSTAGRAM.COM,Social,365582
+SOFI,2023,September 2023,Digital,Digital Social,TIKTOK,Social,11618
+SOFI,2023,September 2023,Digital,Digital Social,X.COM,Social,18585
+SOFI,2024,April 2024,Digital,Digital Social,FACEBOOK.COM,Social,15855
+SOFI,2024,April 2024,Digital,Digital Social,PINTEREST.COM,Social,18507
+SOFI,2024,April 2024,Digital,Digital Social,REDDIT,Social,88
+SOFI,2024,April 2024,Digital,Digital Social,TIKTOK,Social,77542
+SOFI,2024,April 2024,Digital,Digital Social,X.COM,Social,15318
+SOFI,2024,August 2024,Digital,Digital Social,FACEBOOK.COM,Social,1047173
+SOFI,2024,August 2024,Digital,Digital Social,INSTAGRAM.COM,Social,75651
+SOFI,2024,August 2024,Digital,Digital Social,PINTEREST.COM,Social,146
+SOFI,2024,August 2024,Digital,Digital Social,TIKTOK,Social,24745
+SOFI,2024,December 2024,Digital,Digital Social,FACEBOOK.COM,Social,124988
+SOFI,2024,December 2024,Digital,Digital Social,INSTAGRAM.COM,Social,9479
+SOFI,2024,December 2024,Digital,Digital Social,PINTEREST.COM,Social,1051
+SOFI,2024,December 2024,Digital,Digital Social,TIKTOK,Social,8874
+SOFI,2024,February 2024,Digital,Digital Social,FACEBOOK.COM,Social,16598
+SOFI,2024,February 2024,Digital,Digital Social,REDDIT,Social,295410
+SOFI,2024,February 2024,Digital,Digital Social,TIKTOK,Social,41526
+SOFI,2024,February 2024,Digital,Digital Social,X.COM,Social,12711
+SOFI,2024,January 2024,Digital,Digital Social,FACEBOOK.COM,Social,199862
+SOFI,2024,January 2024,Digital,Digital Social,INSTAGRAM.COM,Social,68989
+SOFI,2024,January 2024,Digital,Digital Social,REDDIT,Social,1764
+SOFI,2024,January 2024,Digital,Digital Social,TIKTOK,Social,46871
+SOFI,2024,July 2024,Digital,Digital Social,FACEBOOK.COM,Social,274612
+SOFI,2024,July 2024,Digital,Digital Social,INSTAGRAM.COM,Social,425217
+SOFI,2024,July 2024,Digital,Digital Social,PINTEREST.COM,Social,7613
+SOFI,2024,July 2024,Digital,Digital Social,TIKTOK,Social,13678
+SOFI,2024,June 2024,Digital,Digital Social,FACEBOOK.COM,Social,52200
+SOFI,2024,June 2024,Digital,Digital Social,INSTAGRAM.COM,Social,31223
+SOFI,2024,June 2024,Digital,Digital Social,PINTEREST.COM,Social,11784
+SOFI,2024,June 2024,Digital,Digital Social,TIKTOK,Social,5097
+SOFI,2024,March 2024,Digital,Digital Social,FACEBOOK.COM,Social,19009
+SOFI,2024,March 2024,Digital,Digital Social,PINTEREST.COM,Social,46131
+SOFI,2024,March 2024,Digital,Digital Social,TIKTOK,Social,50594
+SOFI,2024,May 2024,Digital,Digital Social,FACEBOOK.COM,Social,15572
+SOFI,2024,May 2024,Digital,Digital Social,PINTEREST.COM,Social,82268
+SOFI,2024,May 2024,Digital,Digital Social,TIKTOK,Social,56967
+SOFI,2024,May 2024,Digital,Digital Social,X.COM,Social,1086
+SOFI,2024,November 2024,Digital,Digital Social,FACEBOOK.COM,Social,206582
+SOFI,2024,November 2024,Digital,Digital Social,INSTAGRAM.COM,Social,28171
+SOFI,2024,November 2024,Digital,Digital Social,TIKTOK,Social,6227
+SOFI,2024,October 2024,Digital,Digital Social,FACEBOOK.COM,Social,318423
+SOFI,2024,October 2024,Digital,Digital Social,INSTAGRAM.COM,Social,36973
+SOFI,2024,October 2024,Digital,Digital Social,PINTEREST.COM,Social,459
+SOFI,2024,October 2024,Digital,Digital Social,TIKTOK,Social,5842
+SOFI,2024,September 2024,Digital,Digital Social,FACEBOOK.COM,Social,741290
+SOFI,2024,September 2024,Digital,Digital Social,INSTAGRAM.COM,Social,66837
+SOFI,2024,September 2024,Digital,Digital Social,PINTEREST.COM,Social,153
+SOFI,2024,September 2024,Digital,Digital Social,TIKTOK,Social,3971
+SOFI,2025,April 2025,Digital,Digital Social,FACEBOOK.COM,Social,583596
+SOFI,2025,April 2025,Digital,Digital Social,INSTAGRAM.COM,Social,3269
+SOFI,2025,April 2025,Digital,Digital Social,PINTEREST.COM,Social,40089
+SOFI,2025,April 2025,Digital,Digital Social,TIKTOK,Social,6157
+SOFI,2025,February 2025,Digital,Digital Social,FACEBOOK.COM,Social,109647
+SOFI,2025,February 2025,Digital,Digital Social,INSTAGRAM.COM,Social,5933
+SOFI,2025,February 2025,Digital,Digital Social,PINTEREST.COM,Social,269
+SOFI,2025,February 2025,Digital,Digital Social,TIKTOK,Social,11414
+SOFI,2025,February 2025,Digital,Digital Social,X.COM,Social,3528
+SOFI,2025,January 2025,Digital,Digital Social,FACEBOOK.COM,Social,305113
+SOFI,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,10038
+SOFI,2025,January 2025,Digital,Digital Social,PINTEREST.COM,Social,5925
+SOFI,2025,January 2025,Digital,Digital Social,TIKTOK,Social,5910
+SOFI,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,66521
+SOFI,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,2274
+SOFI,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,4960
+SOFI,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,367587
+SOFI,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,12638
+SOFI,2025,June 2025,Digital,Digital Social,PINTEREST.COM,Social,13138
+SOFI,2025,June 2025,Digital,Digital Social,X.COM,Social,6688
+SOFI,2025,March 2025,Digital,Digital Social,FACEBOOK.COM,Social,269270
+SOFI,2025,March 2025,Digital,Digital Social,INSTAGRAM.COM,Social,2653
+SOFI,2025,March 2025,Digital,Digital Social,PINTEREST.COM,Social,1558
+SOFI,2025,March 2025,Digital,Digital Social,TIKTOK,Social,30165
+SOFI,2025,March 2025,Digital,Digital Social,X.COM,Social,5017
+SOFI,2025,May 2025,Digital,Digital Social,FACEBOOK.COM,Social,373754
+SOFI,2025,May 2025,Digital,Digital Social,INSTAGRAM.COM,Social,10411
+SOFI,2025,May 2025,Digital,Digital Social,PINTEREST.COM,Social,17124
+SOFI,2025,May 2025,Digital,Digital Social,TIKTOK,Social,761
+SOFI,2025,May 2025,Digital,Digital Social,X.COM,Social,563
 TD BANK,2023,April 2023,Digital,Digital Social,FACEBOOK.COM,Social,215594
 TD BANK,2023,April 2023,Digital,Digital Social,INSTAGRAM.COM,Social,51198
 TD BANK,2023,April 2023,Digital,Digital Social,TIKTOK,Social,6226
@@ -608,8 +731,8 @@ TD BANK,2025,February 2025,Digital,Digital Social,FACEBOOK.COM,Social,437852
 TD BANK,2025,February 2025,Digital,Digital Social,INSTAGRAM.COM,Social,493681
 TD BANK,2025,January 2025,Digital,Digital Social,FACEBOOK.COM,Social,789356
 TD BANK,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,579066
-TD BANK,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,50267
-TD BANK,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,111740
+TD BANK,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,56170
+TD BANK,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,134789
 TD BANK,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,421259
 TD BANK,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,573688
 TD BANK,2025,March 2025,Digital,Digital Social,FACEBOOK.COM,Social,672739
@@ -694,9 +817,9 @@ US BANK,2025,February 2025,Digital,Digital Social,PINTEREST.COM,Social,625374
 US BANK,2025,January 2025,Digital,Digital Social,FACEBOOK.COM,Social,618206
 US BANK,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,317525
 US BANK,2025,January 2025,Digital,Digital Social,PINTEREST.COM,Social,219673
-US BANK,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,83158
-US BANK,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,114526
-US BANK,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,41123
+US BANK,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,96521
+US BANK,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,138184
+US BANK,2025,July 2025,Digital,Digital Social,PINTEREST.COM,Social,48801
 US BANK,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,211709
 US BANK,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,475094
 US BANK,2025,June 2025,Digital,Digital Social,PINTEREST.COM,Social,455360
@@ -787,10 +910,10 @@ WELLS FARGO,2025,February 2025,Digital,Digital Social,TIKTOK,Social,64387
 WELLS FARGO,2025,January 2025,Digital,Digital Social,FACEBOOK.COM,Social,26107
 WELLS FARGO,2025,January 2025,Digital,Digital Social,INSTAGRAM.COM,Social,9086
 WELLS FARGO,2025,January 2025,Digital,Digital Social,TIKTOK,Social,77028
-WELLS FARGO,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,62401
-WELLS FARGO,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,87388
+WELLS FARGO,2025,July 2025,Digital,Digital Social,FACEBOOK.COM,Social,71153
+WELLS FARGO,2025,July 2025,Digital,Digital Social,INSTAGRAM.COM,Social,106249
 WELLS FARGO,2025,July 2025,Digital,Digital Social,REDDIT,Social,8
-WELLS FARGO,2025,July 2025,Digital,Digital Social,TIKTOK,Social,15924
+WELLS FARGO,2025,July 2025,Digital,Digital Social,TIKTOK,Social,18273
 WELLS FARGO,2025,June 2025,Digital,Digital Social,FACEBOOK.COM,Social,628131
 WELLS FARGO,2025,June 2025,Digital,Digital Social,INSTAGRAM.COM,Social,477447
 WELLS FARGO,2025,June 2025,Digital,Digital Social,REDDIT,Social,6559

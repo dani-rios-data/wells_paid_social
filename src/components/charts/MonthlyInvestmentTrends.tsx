@@ -10,54 +10,26 @@ interface MonthlyInvestmentTrendsProps {
 }
 
 export const MonthlyInvestmentTrends: React.FC<MonthlyInvestmentTrendsProps> = ({ data, bank, year }) => {
-  // Determine unique years in the dataset
-  const uniqueYears = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
-  const currentYear = uniqueYears[uniqueYears.length - 1];
-  const previousYear = uniqueYears[uniqueYears.length - 2];
+  // Filter data for specific bank and year only
+  const bankData = data.filter(item => item.bank === bank && item.year === year);
   
-  let bankData: any[] = [];
-  let monthOrder: string[] = [];
-  let yearRange = '';
-  let mostRecentMonth = 'December';
+  // Get the months available for this specific year
+  const availableMonths = bankData.map(item => item.month.split(' ')[0]);
+  const uniqueMonths = [...new Set(availableMonths)];
   
-  if (year === currentYear) {
-    // For current year: December of previous year + current year data
-    const prevYear = year - 1;
-    bankData = data.filter(item => 
-      item.bank === bank && 
-      ((item.year === prevYear && item.month.startsWith('December')) || 
-       (item.year === year))
-    );
-    
-    // Get the most recent month available in the current year
-    const currentYearMonths = bankData
-      .filter(item => item.year === year)
-      .map(item => item.month.split(' ')[0]);
-    
-    const allMonths = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
-    
-    mostRecentMonth = currentYearMonths.reduce((latest, current) => {
-      const latestIndex = allMonths.indexOf(latest);
-      const currentIndex = allMonths.indexOf(current);
-      return currentIndex > latestIndex ? current : latest;
-    }, currentYearMonths[0] || 'January');
-
-    // Define month order from December of previous year to most recent month of current year
-    const mostRecentIndex = allMonths.indexOf(mostRecentMonth);
-    monthOrder = ['December', ...allMonths.slice(0, mostRecentIndex + 1)];
-    yearRange = `Dec ${prevYear} to ${mostRecentMonth} ${year}`;
-  } else {
-    // For previous year: January to December of that year only
-    bankData = data.filter(item => 
-      item.bank === bank && item.year === year
-    );
-    
-    monthOrder = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
-    yearRange = `Jan ${year} to Dec ${year}`;
-    mostRecentMonth = 'December';
-  }
+  const allMonths = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+  
+  // Sort months by their order in the year
+  const monthOrder = allMonths.filter(month => uniqueMonths.includes(month));
+  
+  // Get the most recent month available
+  const mostRecentMonth = monthOrder.length > 0 ? monthOrder[monthOrder.length - 1] : 'December';
+  
+  // Set year range based on available data
+  const yearRange = monthOrder.length > 0 
+    ? `${monthOrder[0]} ${year} to ${mostRecentMonth} ${year}`
+    : `${year}`;
   
   if (bankData.length === 0) {
     return (
@@ -88,15 +60,8 @@ export const MonthlyInvestmentTrends: React.FC<MonthlyInvestmentTrendsProps> = (
   // Transform data for chart
   const chartData = monthOrder.map(month => {
     const monthData = monthlyData[month] || {};
-    let displayMonth = '';
-    
-    if (year === currentYear) {
-      // For current year: December shows previous year, others show current year
-      displayMonth = month === 'December' ? `Dec'${String(year - 1).slice(-2)}` : `${month.slice(0, 3)}'${String(year).slice(-2)}`;
-    } else {
-      // For previous year: all months show the year being analyzed
-      displayMonth = `${month.slice(0, 3)}'${String(year).slice(-2)}`;
-    }
+    // All months show the year being analyzed
+    const displayMonth = `${month.slice(0, 3)}'${String(year).slice(-2)}`;
     
     return {
       month: displayMonth,
@@ -182,7 +147,7 @@ export const MonthlyInvestmentTrends: React.FC<MonthlyInvestmentTrendsProps> = (
     <div className="bg-white rounded-lg border shadow-sm">
       <div className="p-4 border-b">
         <h3 className="text-lg font-semibold text-gray-900">Monthly Investment Trends</h3>
-        <p className="text-sm text-gray-600">{bank} - Dec {previousYear} to {mostRecentMonth} {year}</p>
+        <p className="text-sm text-gray-600">{bank} - {yearRange}</p>
       </div>
       
       <div className="p-2">

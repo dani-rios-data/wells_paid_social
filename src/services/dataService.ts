@@ -24,13 +24,16 @@ export const loadCSVData = async (): Promise<SocialSpendData[]> => {
         // Clean bank name - keep original names from CSV
         const cleanBankName = bank;
         
-        data.push({
-          bank: cleanBankName,
-          year,
-          month,
-          platform,
-          spend
-        });
+        // Filter out July 2025 data
+        if (!(year === 2025 && month === 'July 2025')) {
+          data.push({
+            bank: cleanBankName,
+            year,
+            month,
+            platform,
+            spend
+          });
+        }
       }
     }
     
@@ -53,6 +56,7 @@ export const bankColors = {
   "PNC BANK": "#254AA5", // azul PNC
   "TD BANK": "#00B04F", // verde TD
   "CITI": "#0066CC", // azul Citi
+  "SOFI": "#FF6B35", // naranja coral
   "FIRST NATL BANK OF AMERICA": "#8B4513", // marrón
   "Bank": "#808080", // gris para header
 };
