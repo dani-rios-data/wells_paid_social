@@ -198,7 +198,6 @@ export const MonthlyInvestmentTrends: React.FC<MonthlyInvestmentTrendsProps> = (
             barCategoryGap="5%"
             maxBarSize={60}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
               dataKey="month" 
               stroke="#666"
