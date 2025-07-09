@@ -15,6 +15,8 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
   const [selectedPlatformForBankDonut, setSelectedPlatformForBankDonut] = useState<string>("All");
   const [selectedComparisonBank, setSelectedComparisonBank] = useState<string>("CHASE");
   const [selectedDistributor, setSelectedDistributor] = useState<string>("All");
+  const [selectedPrimaryBankForTimeSeries, setSelectedPrimaryBankForTimeSeries] = useState<string>("WELLS FARGO");
+  const [selectedTimeSeriesPlatform, setSelectedTimeSeriesPlatform] = useState<string>("All");
 
   // Get unique years from data
   const uniqueYears = useMemo(() => {
@@ -28,8 +30,8 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
 
   // Get unique banks excluding selected bank for comparison
   const uniqueComparisonBanks = useMemo(() => {
-    return [...new Set(data.map(item => item.bank))].filter(bank => bank !== selectedBankForPlatformDonut).sort();
-  }, [data, selectedBankForPlatformDonut]);
+    return [...new Set(data.map(item => item.bank))].filter(bank => bank !== selectedPrimaryBankForTimeSeries).sort();
+  }, [data, selectedPrimaryBankForTimeSeries]);
 
   // Get unique distributors
   const uniqueDistributors = useMemo(() => {
@@ -128,10 +130,10 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
     
     // Get selected bank monthly totals
     let selectedBankData = data.filter(item => 
-      item.bank === selectedBankForPlatformDonut && item.year === selectedYear
+      item.bank === selectedPrimaryBankForTimeSeries && item.year === selectedYear
     );
-    if (selectedDistributor !== "All") {
-      selectedBankData = selectedBankData.filter(item => item.platform === selectedDistributor);
+    if (selectedTimeSeriesPlatform !== "All") {
+      selectedBankData = selectedBankData.filter(item => item.platform === selectedTimeSeriesPlatform);
     }
     
     const selectedBankMonthly = selectedBankData.reduce((acc, item) => {
@@ -144,8 +146,8 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
     let comparisonData = data.filter(item => 
       item.bank === selectedComparisonBank && item.year === selectedYear
     );
-    if (selectedDistributor !== "All") {
-      comparisonData = comparisonData.filter(item => item.platform === selectedDistributor);
+    if (selectedTimeSeriesPlatform !== "All") {
+      comparisonData = comparisonData.filter(item => item.platform === selectedTimeSeriesPlatform);
     }
     
     const comparisonMonthly = comparisonData.reduce((acc, item) => {
@@ -156,8 +158,8 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
     
     // Calculate industry average
     let allBanksData = data.filter(item => item.year === selectedYear);
-    if (selectedDistributor !== "All") {
-      allBanksData = allBanksData.filter(item => item.platform === selectedDistributor);
+    if (selectedTimeSeriesPlatform !== "All") {
+      allBanksData = allBanksData.filter(item => item.platform === selectedTimeSeriesPlatform);
     }
     
     const totalSpend = allBanksData.reduce((sum, item) => sum + item.spend, 0);
@@ -167,11 +169,11 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
     
     return monthNames.map(month => ({
       month: `${month.slice(0, 3)}'${selectedYear.toString().slice(-2)}`,
-      [selectedBankForPlatformDonut]: selectedBankMonthly[month] || 0,
+      [selectedPrimaryBankForTimeSeries]: selectedBankMonthly[month] || 0,
       [selectedComparisonBank]: comparisonMonthly[month] || 0,
       'Industry Average': industryAverage
     }));
-  }, [data, selectedYear, selectedBankForPlatformDonut, selectedComparisonBank, selectedDistributor]);
+  }, [data, selectedYear, selectedPrimaryBankForTimeSeries, selectedComparisonBank, selectedTimeSeriesPlatform]);
 
   // Platform colors
   const platformColors = {
@@ -491,8 +493,22 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
       {/* Time Series Comparison */}
       <Card>
         <CardHeader>
-          <CardTitle>Wells Fargo Monthly Investment Comparison</CardTitle>
+          <CardTitle>Monthly Investment Comparison</CardTitle>
           <div className="flex gap-4 flex-wrap items-center bg-gray-50 p-3 rounded-lg">
+            <div className="flex flex-col">
+              <label className="text-xs font-medium mb-1 text-gray-700">Primary Bank</label>
+              <Select value={selectedPrimaryBankForTimeSeries} onValueChange={setSelectedPrimaryBankForTimeSeries}>
+                <SelectTrigger className="w-48 border-gray-300 bg-white shadow-sm text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {uniqueBanks.map(bank => (
+                    <SelectItem key={bank} value={bank} className="text-sm">{bank}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
             <div className="flex flex-col">
               <label className="text-xs font-medium mb-1 text-gray-700">Comparison Bank</label>
               <Select value={selectedComparisonBank} onValueChange={setSelectedComparisonBank}>
@@ -509,7 +525,7 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
             
             <div className="flex flex-col">
               <label className="text-xs font-medium mb-1 text-gray-700">Platform</label>
-              <Select value={selectedDistributor} onValueChange={setSelectedDistributor}>
+              <Select value={selectedTimeSeriesPlatform} onValueChange={setSelectedTimeSeriesPlatform}>
                 <SelectTrigger className="w-40 border-gray-300 bg-white shadow-sm text-sm">
                   <SelectValue />
                 </SelectTrigger>
@@ -537,11 +553,11 @@ export const WellsFargoDashboard: React.FC<WellsFargoDashboardProps> = ({ data }
                 <Tooltip content={<CustomTooltip />} />
                 <Line 
                   type="monotone" 
-                  dataKey={selectedBankForPlatformDonut} 
-                  stroke="#D71921" 
+                  dataKey={selectedPrimaryBankForTimeSeries} 
+                  stroke={bankColors[selectedPrimaryBankForTimeSeries as keyof typeof bankColors] || '#D71921'} 
                   strokeWidth={3}
                   dot={false}
-                  activeDot={{ r: 6, fill: '#D71921', stroke: '#fff', strokeWidth: 2 }}
+                  activeDot={{ r: 6, fill: bankColors[selectedPrimaryBankForTimeSeries as keyof typeof bankColors] || '#D71921', stroke: '#fff', strokeWidth: 2 }}
                 />
                 <Line 
                   type="monotone" 
