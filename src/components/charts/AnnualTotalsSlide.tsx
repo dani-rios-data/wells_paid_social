@@ -99,59 +99,65 @@ export const AnnualTotalsSlide = ({ data }: AnnualTotalsSlideProps) => {
   };
 
   return (
-    <div className="space-y-8" onClick={() => setIsFilterOpen(false)}>
-      {/* Total Spend by Year by Brand - Chart */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-foreground">
-            Total Spend by Year by Brand
-          </h3>
-          
-          {/* Multi-select Bank Filter */}
-          <div className="relative">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsFilterOpen(!isFilterOpen);
-              }}
-              className="flex items-center gap-2 text-sm"
-            >
-              Banks ({selectedBanks.length})
-              <ChevronDown className="w-4 h-4" />
-            </Button>
-            
-            {isFilterOpen && (
-              <div 
-                className="absolute right-0 top-full mt-1 w-64 bg-white border rounded-lg shadow-lg z-10 p-3"
-                onClick={(e) => e.stopPropagation()}
+    <div className="space-y-6" onClick={() => setIsFilterOpen(false)}>
+      {/* Dashboard Filters */}
+      <div className="bg-slate-700 text-white p-6 rounded-lg">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Dashboard Filters</h2>
+          <div className="flex items-center gap-4">
+            <label className="text-sm font-medium">Banks:</label>
+            <div className="relative">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsFilterOpen(!isFilterOpen);
+                }}
+                className="flex items-center gap-2 text-sm w-48 justify-between bg-white text-black"
               >
-                <div className="max-h-48 overflow-y-auto space-y-2">
-                  {allBanks.map(bank => (
-                    <div key={bank} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={bank}
-                        checked={selectedBanks.includes(bank)}
-                        onCheckedChange={() => handleBankToggle(bank)}
-                      />
-                      <label
-                        htmlFor={bank}
-                        className="text-sm cursor-pointer flex-1"
-                      >
-                        {bank}
-                      </label>
-                      <div
-                        className="w-3 h-3 rounded"
-                        style={{ backgroundColor: bankColors[bank as keyof typeof bankColors] || '#6B7280' }}
-                      />
-                    </div>
-                  ))}
+                <span>Banks ({selectedBanks.length})</span>
+                <ChevronDown className="w-4 h-4" />
+              </Button>
+              
+              {isFilterOpen && (
+                <div 
+                  className="absolute right-0 top-full mt-1 w-64 bg-white border rounded-lg shadow-lg z-10 p-3"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="max-h-48 overflow-y-auto space-y-2">
+                    {allBanks.map(bank => (
+                      <div key={bank} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={bank}
+                          checked={selectedBanks.includes(bank)}
+                          onCheckedChange={() => handleBankToggle(bank)}
+                        />
+                        <label
+                          htmlFor={bank}
+                          className="text-sm cursor-pointer flex-1 text-black"
+                        >
+                          {bank}
+                        </label>
+                        <div
+                          className="w-3 h-3 rounded"
+                          style={{ backgroundColor: bankColors[bank as keyof typeof bankColors] || '#6B7280' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Total Spend by Year by Brand - Chart */}
+      <div className="bg-white p-6 rounded-lg shadow-sm border">
+        <h3 className="text-xl font-semibold mb-6 text-foreground">
+          Total Spend by Year by Brand
+        </h3>
         <div style={{ width: '100%', height: '600px' }}>
           <ResponsiveContainer>
             <BarChart data={totalSpendData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
